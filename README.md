@@ -1,7 +1,7 @@
 # springerMetaParserUltraDoNotUse
 
 ## Install
-Download latest executable in *[releases](https://github.com/akmubi/springerMetaParserUltraDoNotUse/releases)
+Download latest executable in [*releases*](https://github.com/akmubi/springerMetaParserUltraDoNotUse/releases)
 
 ## Prerequisites
 1. Before using executable you must get **an access key ID** and **a secret access key** from your administrator in Amazon IMA and ask for following rights:
