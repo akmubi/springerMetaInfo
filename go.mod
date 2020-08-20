@@ -1,4 +1,4 @@
-module github.com/akmubi/springerMetaParserUltraDoNotUse
+module springerMetaInfo
 
 go 1.14
 
