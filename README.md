@@ -28,9 +28,9 @@ aws_secret_access_key=YOUR SECRET ACCESS KEY
 ```
 OR
 If you don't want to create a ***credentials*** file , you can specify them by following command-line flags:
-+ ``... -accesskey="YOUR ACCESS KEY ID" ...``
-+ ``... -secretkey="YOUR SECRET ACCESS KEY" ...``
-
+```shell
+>springerMetaInfo.exe ... -accesskey="YOUR ACCESS KEY ID" -secretkey="YOUR SECRET ACCESS KEY" ...
+```
 5. Save your **region** in ***%USERPROFILE%/.aws/config*** file in following format:
 ```
 [default]
@@ -38,7 +38,15 @@ If you don't want to create a ***credentials*** file , you can specify them by f
    output=json
 ```
 OR
-if you don't want to create a ***config*** file, you can specify *region* by environment variable (``set AWS_REGION="YOUR REGION"``) or command-line flag (``... -region="YOUR REGION"``)
+if you don't want to create a ***config*** file, you can specify *region* by:
++ environment variable
+```shell
+>set AWS_REGION="YOUR REGION"
+```
++ command-line flag
+```shell
+>springerMetaInfo.exe ... -region="YOUR REGION" ...
+```
 
 ## Basic Usage
 ### Command
