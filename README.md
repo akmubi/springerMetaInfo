@@ -20,25 +20,25 @@ Download latest executable in *[releases](https://github.com/akmubi/springerMeta
 + GetObject
 + DeleteObject
 3. Find out database region
-4. Save your **access key ID** and **secret access key** in %USERPFOLILE%/.aws/credentials file in following format:
-```plain
+4. Save your **access key ID** and **secret access key** in ***%USERPFOLILE%/.aws/credentials*** file in following format:
+```
 [default]
 aws_access_key_id=YOUR ACCESS KEY ID
 aws_secret_access_key=YOUR SECRET ACCESS KEY
 ```
 OR
-If you don't want to create a file **.aws/credentials**, you can specify them by following command-line flags:
+If you don't want to create a ***credentials*** file , you can specify them by following command-line flags:
 + ``... -accesskey="YOUR ACCESS KEY ID" ...``
 + ``... -secretkey="YOUR SECRET ACCESS KEY" ...``
 
-5. Save your **region** in %USERPROFILE%/.aws/config file in following format:
-```plain
+5. Save your **region** in ***%USERPROFILE%/.aws/config*** file in following format:
+```
 [default]
    region=YOUR REGION
    output=json
 ```
 OR
-if you don't have **.aws/confg**, you can specify *region* by environment variable (``set AWS_REGION="YOUR REGION"``) or command-line flag (``... -region="YOUR REGION"``)
+if you don't want to create a ***config*** file, you can specify *region* by environment variable (``set AWS_REGION="YOUR REGION"``) or command-line flag (``... -region="YOUR REGION"``)
 
 ## Basic Usage
 ### Command
@@ -48,7 +48,7 @@ if you don't have **.aws/confg**, you can specify *region* by environment variab
 -pkname="Title" -pktype=S -openaccess -maxpages=3
 ```
 ### Output:
-```shell
+```
 Table info:
         Name: SampleTable
         Primary Key: Title
