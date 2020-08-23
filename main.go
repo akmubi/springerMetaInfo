@@ -107,11 +107,12 @@ type ArticleMetaInfo struct {
 	Link            string
 	PDFLink			string
 	FileName		string
-	ID 				int
 	OpenAccess		bool
-	Volume          int   
+	AlwaysTheSame	int
 	StartingPage    int   
 	EndingPage      int
+	Volume          int   
+	ID 				int
 }
 
 func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
@@ -124,6 +125,7 @@ func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
 	a.Publisher = record.Article.Publisher
 	a.Link = record.Article.URL
 	a.OpenAccess = record.Article.OpenAccess
+	a.AlwaysTheSame = 1
 	if a.OpenAccess {
 		a.PDFLink = "https://link.springer.com/content/pdf/" + strings.Replace(strings.TrimPrefix(a.Link, "http://dx.doi.org/"), "/", "%2F", -1) + ".pdf"
 	}
