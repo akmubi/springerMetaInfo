@@ -97,22 +97,23 @@ type SpringerResponse struct {
 
 // database respresentation
 type ArticleMetaInfo struct {
-	Authors        []string
-	Title           string
+	Authors			[]string
+	Keywords		[]string
+	Title			string
 	Abstract		string
 	PublicationName string
-	Number          string
+	Number			string
 	PublicationDate string
-	Publisher       string
-	Link            string
+	Publisher		string
+	Link			string
 	PDFLink			string
 	FileName		string
 	OpenAccess		bool
 	AlwaysTheSame	int
-	StartingPage    int   
-	EndingPage      int
-	Volume          int   
-	ID 				int
+	StartingPage	int   
+	EndingPage		int
+	Volume			int   
+	ID				int
 }
 
 func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
@@ -124,6 +125,11 @@ func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
 	a.PublicationDate = record.Article.PublicationDate
 	a.Publisher = record.Article.Publisher
 	a.Link = record.Article.URL
+	keywords, err := parseKeywords(a.Link);
+	if err != nil {
+		log.Println("Parsing keywords:", err)
+	}
+	a.Keywords = keywords
 	a.OpenAccess = record.Article.OpenAccess
 	a.AlwaysTheSame = 1
 	if a.OpenAccess {
