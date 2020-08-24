@@ -125,11 +125,11 @@ func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
 	a.PublicationDate = record.Article.PublicationDate
 	a.Publisher = record.Article.Publisher
 	a.Link = record.Article.URL
-	keywords, err := parseKeywords(a.Link);
+	springerKeywords, err := parseKeywords(a.Link);
 	if err != nil {
 		log.Println("Parsing keywords:", err)
 	}
-	a.Keywords = keywords
+	a.Keywords = append([]string{ keywords }, springerKeywords...)
 	a.OpenAccess = record.Article.OpenAccess
 	a.AlwaysTheSame = 1
 	if a.OpenAccess {
@@ -309,6 +309,8 @@ var tableName, primaryKey, primaryKeyType, sortKey, sortKeyType string
 var bucketName string
 var needUpload bool
 
+var keywords string
+
 func main() {
 
 	start := time.Now()
@@ -343,7 +345,7 @@ func main() {
 	flag.Parse()
 
 	// keywords flag
-	keywords := *keywordsPtr
+	keywords = *keywordsPtr
 	if keywords == "" {
 		fmt.Fprintf(os.Stderr, "Keywords are not specified (Use -h or --help)")
 		os.Exit(1)
