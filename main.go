@@ -335,9 +335,9 @@ func main() {
 	sortKeyTypePtr		:= flag.String	("sktype",		"",			"Sort Key type. Possible types - \"N\"/\"S\" (Number/String). Example: -sktype=N")
 	
 	// credentials
-	accessKeyPtr		:= flag.String	("accesskey",	"",			"Amazom DynamoDB Access Key ID")
-	secretKeyPtr		:= flag.String	("secretkey",	"",			"Amazom DynamoDB Secret Access Key ID")
-	regionPtr			:= flag.String	("region",		"",			"Amazom DynamoDB Region")
+	accessKeyPtr		:= flag.String	("accesskey",	"",			"Amazon DynamoDB Access Key ID")
+	secretKeyPtr		:= flag.String	("secretkey",	"",			"Amazon DynamoDB Secret Access Key ID")
+	regionPtr			:= flag.String	("region",		"",			"Amazon DynamoDB Region")
 	
 	// S3
 	bucketNamePtr		:= flag.String	("bucketname", 	"",			"S3 bucket name to upload into. Example -bucketname=\"myuniquebucketname3287\"")
