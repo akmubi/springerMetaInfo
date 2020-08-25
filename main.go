@@ -285,7 +285,7 @@ func storeMeta(database *DataBase, manager *S3Manager, numworkers, numjobs int, 
 				articleMeta.ID = itemCounter
 				itemCounter++
 				mutex.Unlock()
-
+				fmt.Printf("Inserting '%s' into '%s'\n", articleMeta.Title, tableName)
 				err := database.PutItem(tableName, articleMeta)
 				done <- err
 			}
