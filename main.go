@@ -98,7 +98,7 @@ type SpringerResponse struct {
 // database respresentation
 type ArticleMetaInfo struct {
 	Authors			[]string
-	Keywords		[]string
+	Keywords		string
 	Title			string
 	Abstract		string
 	PublicationName string
@@ -129,7 +129,11 @@ func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
 	if err != nil {
 		log.Println("Parsing keywords:", err)
 	}
-	a.Keywords = append([]string{ keywords }, springerKeywords...)
+	a.Keywords = " "  
+	localKeywords := append([]string{ strings.ToLower(keywords) }, springerKeywords...)
+	for _, keyword := range localKeywords {
+		a.Keywords += strings.TrimSpace(keyword) + " "
+	}
 	a.OpenAccess = record.Article.OpenAccess
 	a.AlwaysTheSame = 1
 	if a.OpenAccess {
@@ -351,11 +355,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// openaccess flag
-	if *openAccessPtr {
-		keywords += " openaccess:true"
-	}
-
 	// if needUpload {
 	tableName, primaryKey, primaryKeyType = *tablenamePtr, *primaryKeyPtr, *primaryKeyTypePtr
 	if !(tableName != "" && primaryKey != "" && (primaryKeyType == "N" || primaryKeyType == "S")) {
@@ -475,7 +474,13 @@ func main() {
 
 	// join all strings in slice and process this string
 	// example: ["cyber-physical" "system" "design"] --> "cyber-physical%20system%20design"
-	searchQuery := replaceNonLetters(keywords)
+	searchQuery := keywords
+
+	if *openAccessPtr {
+		searchQuery += " openaccess:true"
+	}
+
+	searchQuery = replaceNonLetters(searchQuery)
 
 
 	// form query
