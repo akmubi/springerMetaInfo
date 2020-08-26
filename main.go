@@ -116,6 +116,24 @@ type ArticleMetaInfo struct {
 	ID			int
 }
 
+func isPDFAvailable(pdfLink string) bool {
+	response, err := http.Get(pdfLink)
+	defer response.Body.Close()
+	if err != nil {
+		return false
+	}
+
+	result, err := ioutil.ReadAll(response.Body)
+	if err != nil || len(result) == 0 {
+		return false
+	}
+
+	if string(result[:4]) != "%PDF" {
+		return false
+	}
+	return true
+}
+
 func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
 	a.Authors = record.Article.Creators
 	a.Title = record.Article.Title
@@ -136,9 +154,11 @@ func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
 	}
 	a.OpenAccess = record.Article.OpenAccess
 	a.AlwaysTheSame = 1
-	if a.OpenAccess {
-		a.PDFLink = "https://link.springer.com/content/pdf/" + strings.Replace(strings.TrimPrefix(a.Link, "http://dx.doi.org/"), "/", "%2F", -1) + ".pdf"
+	pdfLink := "https://link.springer.com/content/pdf/" + strings.Replace(strings.TrimPrefix(a.Link, "http://dx.doi.org/"), "/", "%2F", -1) + ".pdf"
+	if isPDFAvailable(pdfLink) {
+		a.PDFLink = pdfLink
 	}
+
 	a.Volume = record.Article.Volume
 	a.StartingPage = record.Article.StartingPage
 	a.EndingPage = record.Article.EndingPage
@@ -206,7 +226,7 @@ var itemCounter int
 
 func storeMeta(database *DataBase, manager *S3Manager, numworkers, numjobs int, records <-chan SpringerRecord) <-chan error {
 	done := make(chan error, numjobs * pageLength)
-	fmt.Println("Starting uploading meta info and PDF files...")
+	fmt.Println("Starting uploading records")
 
 	for i := 0; i < numworkers; i++ {
 		go func(workerID int) {
@@ -214,7 +234,7 @@ func storeMeta(database *DataBase, manager *S3Manager, numworkers, numjobs int, 
 				var articleMeta ArticleMetaInfo
 				articleMeta.Convert(record)
 
-				if needUpload && articleMeta.OpenAccess {
+				if needUpload && articleMeta.PDFLink != "" {
 
 					filename := MakeStringPretty(articleMeta.Title) + ".pdf"
 
