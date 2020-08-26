@@ -371,7 +371,7 @@ func main() {
 	// keywords flag
 	keywords = *keywordsPtr
 	if keywords == "" {
-		fmt.Fprintf(os.Stderr, "Keywords are not specified (Use -h or --help)")
+		fmt.Fprintf(os.Stderr, "Keywords are not specified (Use -h or --help)\n")
 		os.Exit(1)
 	}
 
