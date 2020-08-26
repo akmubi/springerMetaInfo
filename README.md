@@ -20,7 +20,7 @@ Download latest executable in [*releases*](https://github.com/akmubi/springerMet
 + GetObject
 + DeleteObject
 3. Find out database region
-4. Save your **access key ID** and **secret access key** in ***%USERPFOLILE%/.aws/credentials*** file in following format:
+4. Save your **access key ID** and **secret access key** in ***%USERPFOLILE%/.aws/credentials*** (***~/.aws/credentials***) file in following format:
 ```
 [default]
 aws_access_key_id=YOUR ACCESS KEY ID
@@ -31,7 +31,7 @@ If you don't want to create a ***credentials*** file , you can specify them by f
 ```shell
 >springerMetaInfo.exe ... -accesskey="YOUR ACCESS KEY ID" -secretkey="YOUR SECRET ACCESS KEY" ...
 ```
-5. Save your **region** in ***%USERPROFILE%/.aws/config*** file in following format:
+5. Save your **region** in ***%USERPROFILE%/.aws/config*** (***~/.aws/config***) file in following format:
 ```
 [default]
    region=YOUR REGION
