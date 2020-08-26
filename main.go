@@ -76,7 +76,7 @@ type SpringerArticle struct {
 	PublicationName string  	`xml:"publicationName" json:"publication_name"`
 	Volume          int     	`xml:"volume" json:"volume"`
 	Number          string  	`xml:"number" json:"number"`
-	OpenAccess		bool		`xml:"openAccess" json:"open_access"`
+	OpenAccess	bool		`xml:"openAccess" json:"open_access"`
 	StartingPage    int   		`xml:"startingPage" json:"starting_page"`
 	EndingPage      int   		`xml:"endingPage" json:"ending_page"`
 	Publisher       string		`xml:"publisher" json:"publisher"`
@@ -101,19 +101,19 @@ type ArticleMetaInfo struct {
 	Keywords		string
 	Title			string
 	Abstract		string
-	PublicationName string
+	PublicationName 	string
 	Number			string
-	PublicationDate string
+	PublicationDate 	string
 	Publisher		string
 	Link			string
 	PDFLink			string
 	FileName		string
 	OpenAccess		bool
-	AlwaysTheSame	int
-	StartingPage	int   
+	AlwaysTheSame		int
+	StartingPage		int   
 	EndingPage		int
 	Volume			int   
-	ID				int
+	ID			int
 }
 
 func (a *ArticleMetaInfo) Convert(record SpringerRecord) {
@@ -322,29 +322,29 @@ func main() {
 	// flags
 
 	// searching
-	pagesPtr			:= flag.Int		("records",		10,			"Number of records (meta info) in page (max - 50). Example: -records=35")
-	constraintPtr		:= flag.Int		("maxpages",	100,		"Max number of pages to parse. If you want to parse all pages use -1. Example: -maxpages=200")
-	keywordsPtr			:= flag.String	("keywords",	"",			"keywords to search in Springer. Example: -keywords=\"decompilation techniques\"")
+	pagesPtr		:= flag.Int	("records",	10,		"Number of records (meta info) in page (max - 50). Example: -records=35")
+	constraintPtr		:= flag.Int	("maxpages",	100,		"Max number of pages to parse. If you want to parse all pages use -1. Example: -maxpages=200")
+	keywordsPtr		:= flag.String	("keywords",	"",		"keywords to search in Springer. Example: -keywords=\"decompilation techniques\"")
 	openAccessPtr		:= flag.Bool	("openaccess",	false,		"Parse only Open Access articles. Example: -openaccess")
 
 	// database & s3
 	tablenamePtr		:= flag.String	("tablename",	"", 		"Table name to upload into. Example: -tablename=\"Music\"")
-	primaryKeyPtr		:= flag.String	("pkname",		"",			"Primary Key name. Example: -pkname=\"Publisher\"")
-	primaryKeyTypePtr	:= flag.String	("pktype",		"",			"Primary Key type. Possible types - \"N\"/\"S\" (Number/String). Example: -pktype=N")
-	sortKeyPtr			:= flag.String	("skname",		"",			"Sort Key name. Example: -skname=\"ID\"")
-	sortKeyTypePtr		:= flag.String	("sktype",		"",			"Sort Key type. Possible types - \"N\"/\"S\" (Number/String). Example: -sktype=N")
+	primaryKeyPtr		:= flag.String	("pkname",	"",		"Primary Key name. Example: -pkname=\"Publisher\"")
+	primaryKeyTypePtr	:= flag.String	("pktype",	"",		"Primary Key type. Possible types - \"N\"/\"S\" (Number/String). Example: -pktype=N")
+	sortKeyPtr		:= flag.String	("skname",	"",		"Sort Key name. Example: -skname=\"ID\"")
+	sortKeyTypePtr		:= flag.String	("sktype",	"",		"Sort Key type. Possible types - \"N\"/\"S\" (Number/String). Example: -sktype=N")
 	
 	// credentials
-	accessKeyPtr		:= flag.String	("accesskey",	"",			"Amazon DynamoDB Access Key ID")
-	secretKeyPtr		:= flag.String	("secretkey",	"",			"Amazon DynamoDB Secret Access Key ID")
-	regionPtr			:= flag.String	("region",		"",			"Amazon DynamoDB Region")
+	accessKeyPtr		:= flag.String	("accesskey",	"",		"Amazon DynamoDB Access Key ID")
+	secretKeyPtr		:= flag.String	("secretkey",	"",		"Amazon DynamoDB Secret Access Key ID")
+	regionPtr		:= flag.String	("region",	"",		"Amazon DynamoDB Region")
 	
 	// S3
-	bucketNamePtr		:= flag.String	("bucketname", 	"",			"S3 bucket name to upload into. Example -bucketname=\"myuniquebucketname3287\"")
+	bucketNamePtr		:= flag.String	("bucketname", 	"",		"S3 bucket name to upload into. Example -bucketname=\"myuniquebucketname3287\"")
 
 	// goroutines
-	routinesPtr			:= flag.Int		("routines",	10,			"Number of routines. Example: -routines=30")
-	timeoutPtr			:= flag.Int		("timeout",		1,			"Timeout duration in seconds (for each routine). Should be at least 1 second. Example: -timeout=5")
+	routinesPtr		:= flag.Int	("routines",	10,		"Number of routines. Example: -routines=30")
+	timeoutPtr		:= flag.Int	("timeout",	1,		"Timeout duration in seconds (for each routine). Should be at least 1 second. Example: -timeout=5")
 
 	flag.Parse()
 
@@ -526,7 +526,7 @@ func main() {
 	if numJobs > 0 {
 
 		// urls 
-		jobs			:= make(chan string, numJobs)
+		jobs		:= make(chan string, numJobs)
 
 		// errors
 		parserErrors	:= make(chan error, numJobs)
