@@ -1,17 +1,19 @@
-# springerMetaParserUltraDoNotUse
+# springerMetaInfo
 
 ## Install
 Download latest executable in [*releases*](https://github.com/akmubi/springerMetaParserUltraDoNotUse/releases)
 
 ## Prerequisites
-1. Before using executable you must get **an access key ID** and **a secret access key** from your administrator in Amazon IMA and ask for following rights:
+Before using executable you must get:
+1. Springer API key
+2. **an access key ID** and **a secret access key** from your administrator in Amazon IMA and ask for following rights:
 + ListTables
 + DescribeTable
 + CreateTable
 + DeleteItem
 + DeleteTable
 + PutItem
-2. If you want to upload PDF files to S3, ask your administrator for theese rights:
+3. If you want to upload PDF files to S3, ask your administrator for theese rights:
 + ListBucket
 + CreateBucket
 + ListAllMyBuckets
@@ -19,8 +21,8 @@ Download latest executable in [*releases*](https://github.com/akmubi/springerMet
 + PutObject
 + GetObject
 + DeleteObject
-3. Find out database region
-4. Save your **access key ID** and **secret access key** in ***%USERPFOLILE%/.aws/credentials*** (***~/.aws/credentials***) file in following format:
+4. Find out database region
+5. Save your **access key ID** and **secret access key** in ***%USERPFOLILE%/.aws/credentials*** (***~/.aws/credentials***) file in following format:
 ```
 [default]
 aws_access_key_id=YOUR ACCESS KEY ID
@@ -31,7 +33,7 @@ If you don't want to create a ***credentials*** file , you can specify them by f
 ```shell
 >springerMetaInfo.exe ... -accesskey="YOUR ACCESS KEY ID" -secretkey="YOUR SECRET ACCESS KEY" ...
 ```
-5. Save your **region** in ***%USERPROFILE%/.aws/config*** (***~/.aws/config***) file in following format:
+6. Save your **region** in ***%USERPROFILE%/.aws/config*** (***~/.aws/config***) file in following format:
 ```
 [default]
    region=YOUR REGION
@@ -51,7 +53,7 @@ if you don't want to create a ***config*** file, you can specify *region* by:
 ## Basic Usage
 ### Command
 ```shell
->springerMetaInfo.exe -accesskey="..." -secretkey="..." -region="us-east-2" \
+>springerMetaInfo.exe -apikey="..." -accesskey="..." -secretkey="..." -region="us-east-2" \
 -keywords="decompilation" -tablename="SampleTable" \
 -pkname="Title" -pktype=S -openaccess -maxpages=3
 ```
