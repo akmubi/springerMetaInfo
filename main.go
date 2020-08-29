@@ -25,7 +25,7 @@ func check(err error) {
 
 const (
 	springerAPIdomain	= "http://api.springernature.com/"
-	apiKey				= "93934ee59a7e39e820351a39373c19e1"
+	apiKey				= ""
 )
 
 // allowed charactes: '-', '_', '*', '"', '~', '.', '<', '>'
