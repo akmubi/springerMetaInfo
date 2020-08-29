@@ -23,10 +23,10 @@ func check(err error) {
 	}
 }
 
-const (
-	springerAPIdomain	= "http://api.springernature.com/"
-	apiKey				= ""
-)
+const springerAPIdomain	= "http://api.springernature.com/"
+var apiKey string
+
+
 
 // allowed charactes: '-', '_', '*', '"', '~', '.', '<', '>'
 // Example: "**Springer Link**" -> "**Springer%20Link**"
@@ -341,6 +341,9 @@ func main() {
 
 	// flags
 
+	// springer API
+	apiKeyPtr		:= flag.String	("apikey",	"",		"Spinger API Key")
+	
 	// searching
 	pagesPtr		:= flag.Int	("records",	10,		"Number of records (meta info) in page (max - 50). Example: -records=35")
 	constraintPtr		:= flag.Int	("maxpages",	100,		"Max number of pages to parse. If you want to parse all pages use -1. Example: -maxpages=200")
@@ -368,10 +371,15 @@ func main() {
 
 	flag.Parse()
 
-	// keywords flag
-	keywords = *keywordsPtr
-	if keywords == "" {
-		fmt.Fprintf(os.Stderr, "Keywords are not specified (Use -h or --help)\n")
+
+	if apiKey = *apiKeyPtr; apiKey == "" {
+		fmt.Fprintf(os.Stderr, "Springer API Key is required (Use -h or --help to show available options)\n")
+		os.Exit(1)
+	}
+
+	// keywords flag	
+	if keywords = *keywordsPtr; keywords == "" {
+		fmt.Fprintf(os.Stderr, "Keywords are not specified (Use -h or --help to show available options)\n")
 		os.Exit(1)
 	}
 
