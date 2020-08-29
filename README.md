@@ -82,7 +82,9 @@ Type --help to see other options
 >springerMetaInfo.exe --help
 Usage of springerMetaInfo.exe:
   -accesskey string
-        Amazom DynamoDB Access Key ID
+        Amazon DynamoDB Access Key ID
+  -apikey string
+        Spinger API Key
   -bucketname string
         S3 bucket name to upload into. Example -bucketname="myuniquebucketname3287"
   -keywords string
@@ -98,11 +100,11 @@ Usage of springerMetaInfo.exe:
   -records int
         Number of records (meta info) in page (max - 50). Example: -records=35 (default 10)
   -region string
-        Amazom DynamoDB Region
+        Amazon DynamoDB Region
   -routines int
         Number of routines. Example: -routines=30 (default 10)
   -secretkey string
-        Amazom DynamoDB Secret Access Key ID
+        Amazon DynamoDB Secret Access Key ID
   -skname string
         Sort Key name. Example: -skname="ID"
   -sktype string
@@ -110,5 +112,5 @@ Usage of springerMetaInfo.exe:
   -tablename string
         Table name to upload into. Example: -tablename="Music"
   -timeout int
-        Timeout duration in seconds (for routines). Should be at least 1 second. Example: -timeout=5 (default 1)
+        Timeout duration in seconds (for each routine). Should be at least 1 second. Example: -timeout=5 (default 1)
 ```
