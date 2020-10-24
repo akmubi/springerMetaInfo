@@ -22,7 +22,7 @@ Before using executable you must get:
 + GetObject
 + DeleteObject
 4. Find out database region
-5. Save your **access key ID** and **secret access key** in ***%USERPFOLILE%/.aws/credentials*** (***~/.aws/credentials***) file in following format:
+5. Save your **access key ID** and **secret access key** in ***%USERPROFILE%/.aws/credentials*** (***~/.aws/credentials***) file in following format:
 ```
 [default]
 aws_access_key_id=YOUR ACCESS KEY ID
